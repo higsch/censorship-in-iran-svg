@@ -213,8 +213,8 @@ export const layoutBar = (
       ...bar.clusters.map((cluster) => {
         return {
           ...cluster,
-          x: cluster.x - width / 2,
-          y: bar.y - height / 2,
+          x: cluster.x,// - width / 2,
+          y: bar.y,// - height / 2,
           xAbsolute: cluster.x,
           yAbsolute: bar.y,
           ySpacing: bar.ySpacing,
@@ -238,8 +238,8 @@ export const layoutForce = (data, width, height) => {
     let dataCopy = [...data];
 
     const radius = 0.9 * Math.max(width, height) / 2;
-    const x = 0;
-    const y = 0;
+    const x = width / 2;
+    const y = height / 2;
 
     forceSimulation()
       .nodes(dataCopy)

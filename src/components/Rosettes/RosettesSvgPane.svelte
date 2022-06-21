@@ -38,13 +38,13 @@
   }
 
   function handleHover(e) {
-    const { detail: { x, y } = {} } = e || {};
+    const { layerX: x, layerY: y } = e || {};
     const hovered = findDelaunay(x, y);
     hoveredDatum.set(hovered);
   }
 
   function handleClick(e) {
-    const { detail: { x, y } } = e;
+    const { layerX: x, layerY: y } = e;
     const selected = findDelaunay(x, y);
     selectedDatum.set(selected);
   }
@@ -76,12 +76,12 @@
 </script>
 
 <div
-  class="canvas-pane-wrapper"
+  class="svg-pane-wrapper"
   class:hovered={$hoveredDatum}
   bind:clientWidth={width}
   bind:clientHeight={height}
 >
-  <Canvas
+  <svg
     width={width}
     height={height}
     on:mousemove={handleHover}
@@ -99,11 +99,11 @@
         anyHovered={$hoveredLabel}
       />
     {/each}
-  </Canvas>
+  </svg>
 </div>
 
 <style>
-  .canvas-pane-wrapper {
+  .svg-pane-wrapper {
     position: absolute;
     left: 0;
     top: 0;

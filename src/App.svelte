@@ -4,7 +4,7 @@
 
 <div class="app-wrapper">
   <Component
-    dictionaryPath="data/dictionary.json"
+    dictionaryPath="https://visualization.journalismisnotacrime.com/data/dictionary.json"
     locale="en"
   />
 </div>

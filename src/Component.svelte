@@ -18,7 +18,7 @@
 
   // export let dataPath = 'data/data.csv';
   export let dataPath = 'https://journalismisnotacrime.com/en/wall/prisonerslist';
-  export let dictionaryPath = 'data/dictionary.json';
+  export let dictionaryPath;
   export let locale = 'en';
 
   const localStorageKey = 'rosette_data';

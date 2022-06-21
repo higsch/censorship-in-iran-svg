@@ -8,7 +8,7 @@
   import TitleBar from './TitleBar/TitleBar.svelte';
   import ControlPane from './Controls/ControlPane.svelte';
   import RosettesBackground from './Rosettes/RosettesBackground.svelte';
-  import RosettesCanvasPane from './Rosettes/RosettesCanvasPane.svelte';
+  import RosettesSvgPane from './Rosettes/RosettesSvgPane.svelte';
   import RosettesForeground from './Rosettes/RosettesForeground.svelte';
   import DatumTooltip from './RosetteAnnotation/DatumTooltip.svelte';
   import Profile from './Profile/Profile.svelte';
@@ -86,7 +86,7 @@
       data={renderedData}
       showClusterTitles={showClusterTitles}
     />
-    <RosettesCanvasPane
+    <RosettesSvgPane
       data={renderedData}
     />
     <RosettesForeground

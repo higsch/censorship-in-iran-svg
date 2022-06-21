@@ -1,5 +1,4 @@
 <script>
-  import { getContext, onMount, onDestroy, afterUpdate } from 'svelte';
   import { tweened } from 'svelte/motion';
   import { cubicOut } from 'svelte/easing';
   import { interpolate as flubberInterpolate } from 'flubber';
@@ -16,7 +15,6 @@
   export let labelHovered = false;
   export let anyHovered = false;
 
-  const { register, deregister, invalidate } = getContext('canvas');
   const flyDuration = 400 * Math.random() + 800;
   const opacityFactor = Math.min(1.0, Math.max(Math.random(), 0.5));
 
@@ -51,37 +49,6 @@
     easing: cubicOut
   });
 
-  function draw(ctx) {
-    if (!$path) return;
-    
-    const p = new Path2D($path);
-
-    ctx.globalAlpha = 1.0;
-    ctx.translate($x, $y);
-    ctx.beginPath();
-    ctx.fillStyle = fillBackgroundColor;
-    ctx.fill(p);
-    ctx.globalAlpha = 0.9;
-    ctx.strokeStyle = strokeColor;
-    ctx.lineWidth = 1;
-    ctx.stroke(p);
-    ctx.globalAlpha = $opacity;
-    ctx.fillStyle = $fillColor;
-    ctx.fill(p);
-  }
-
-  onMount(() => {
-    register(draw);
-    invalidate();
-    
-    return () => {
-      deregister(draw);
-    };
-  });
-
-	afterUpdate(invalidate);
-	onDestroy(invalidate);
-
   $: path.set(d.path)
   $: x.set(d.x);
   $: y.set(d.y);
@@ -99,3 +66,24 @@
       opacity.set(o);
     }
 </script>
+
+<g
+  class="tile"
+  transform="translate({$x} {$y})"
+>
+  <path
+    class="tile-path-background"
+    d={$path}
+    fill={fillBackgroundColor}
+    fill-opacity="1.0"
+  />
+  <path
+    class="tile-path"
+    d={$path}
+    fill={$fillColor}
+    fill-opacity={$opacity}
+    stroke={strokeColor}
+    stroke-width="0.5"
+    stroke-opacity="0.9"
+  />
+</g>
